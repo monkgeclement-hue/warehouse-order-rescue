@@ -58,3 +58,4 @@ Invite `Rexlesenyeho` to the GitHub repository with write access. Each person sh
 5. Build a read-only adapter for a partner's WMS only after agreeing on field mappings, access, and operational rules.
 
 See [`docs/architecture.md`](docs/architecture.md) and [`docs/team-integration.md`](docs/team-integration.md).
+For a partner-ready explanation of the problem, scope, workflow, modules, and roadmap, see [`docs/project-brief.md`](docs/project-brief.md).
