@@ -16,10 +16,14 @@ The first payload shapes are: `order.released` has `carrier_cutoff_at` (timezone
 
 This is an initial split, not a reason to work in isolation. Agree on a small interface before each person starts; integrate through pull requests into the same repository.
 
-## Local collaboration
+## Branches and collaboration
+
+The local starter branches are `main`, `team/integration`, `team/risk-engine`, and `team/dashboard`. `main` is the shared integration branch; each teammate pushes to their own role branch and opens pull requests into `main`.
+
+After the GitHub repository is created and the branches are pushed:
 
 1. Each teammate clones the same repository and uses a local Python virtual environment.
-2. Use branches such as `codex/event-contract`, `codex/risk-rules`, and `codex/dashboard` (replace the prefix if the team agrees on another convention).
+2. Check out the assigned remote branch, for example `git switch --track origin/team/risk-engine`.
 3. Keep pull requests focused and avoid editing another owner's module unless coordinating first.
 4. Run `python -m unittest discover -s tests -v` and manually run the demo before merging.
 5. Resolve schema changes with all three modules in mind; never rely on a private payload shape that is absent from the contract.

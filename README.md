@@ -41,13 +41,14 @@ The SQLite database is created at `backend/warehouse_rescue.db`. Remove that fil
 
 ## Team workflow
 
-Keep one shared repository and agree on the event contract before parallel work. Work on short-lived branches, open a pull request for each change, and run the tests before merging to `main`.
+Keep one shared repository and agree on the event contract before parallel work. The initial branch layout is:
 
-- **Coordinator / integration:** own `contracts/`, simulator and event ingestion; review cross-module API changes and keep the demo runnable.
-- **Risk and case lifecycle:** own `backend/warehouse_rescue/risk.py` and focused rule tests; document evidence and rule thresholds.
-- **Dashboard and live updates:** own `web/`; consume the documented API and SSE events without changing the event contract unilaterally.
+- `main` — stable, integrated version; merge reviewed pull requests here.
+- `team/integration` — your coordinator branch for the contract, simulator, and ingestion boundary.
+- `team/risk-engine` — the first collaborator's branch for risk and case lifecycle.
+- `team/dashboard` — the second collaborator's branch for the supervisor UI and live updates.
 
-Each person should make a small first pull request against the same running demo. Keep the API and event contract changes explicit so work done on separate machines can be integrated cleanly.
+Invite both collaborators to the GitHub repository with write access. Each person should push only to their own branch and open pull requests to `main`; avoid direct pushes to `main`. Keep the API and event contract changes explicit so work done on separate machines can be integrated cleanly. Once names are known, the branch names can be renamed to match the team if you prefer.
 
 ## Next steps
 
