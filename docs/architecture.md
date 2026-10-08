@@ -26,7 +26,7 @@ The rule is deterministic. It does not need machine learning or real customer da
 ## Components
 
 - **Event contract:** `contracts/warehouse-event.v1.schema.json`; stable boundary between teammates and future integrations.
-- **Ingestion and case API:** `backend/warehouse_rescue/main.py`; validates input, accepts events, exposes cases and SSE.
+- **Ingestion and case API:** `backend/warehouse_rescue/main.py`; validates input, accepts events, exposes cases, SSE, and a read-only per-order event timeline at `/api/v1/orders/{order_id}/events`.
 - **Event store:** `backend/warehouse_rescue/store.py`; SQLite for a zero-service local prototype, preserving the event log.
 - **Risk rules:** `backend/warehouse_rescue/risk.py`; pure, explainable decision logic.
 - **Simulator:** `backend/warehouse_rescue/simulator.py`; emits a repeatable synthetic scenario.

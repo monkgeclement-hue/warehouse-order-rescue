@@ -93,6 +93,16 @@ def list_cases() -> list[dict[str, Any]]:
     return [json.loads(row["case_json"]) for row in rows]
 
 
+def list_order_events(order_id: str) -> list[dict[str, Any]]:
+    """Return one order's append-only event history in event-time order."""
+    with database() as connection:
+        rows = connection.execute(
+            "SELECT event_json FROM events WHERE order_id = ? ORDER BY occurred_at, event_id",
+            (order_id,),
+        ).fetchall()
+    return [json.loads(row["event_json"]) for row in rows]
+
+
 def refresh_cases(*, now: datetime | None = None) -> list[dict[str, Any]]:
     """Re-evaluate known orders as their carrier cutoffs approach, even without new events."""
     now = now or datetime.now(timezone.utc)

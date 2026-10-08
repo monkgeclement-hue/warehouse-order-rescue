@@ -31,6 +31,19 @@ class ApiTests(unittest.TestCase):
         cases = self.client.get("/api/v1/cases").json()["cases"]
         self.assertEqual(cases[0]["case_id"], body["case"]["case_id"])
 
+    def test_order_event_history_is_returned_in_event_time_order(self):
+        demo = self.client.post("/api/v1/demo/run").json()
+        order_id = demo["case"]["order_id"]
+        response = self.client.get(f"/api/v1/orders/{order_id}/events")
+        self.assertEqual(response.status_code, 200)
+        history = response.json()["events"]
+        self.assertEqual(len(history), 6)
+        self.assertEqual(
+            [event["event_type"] for event in history],
+            ["order.released", "order.line_picked", "order.line_picked", "order.line_picked", "order.line_picked", "order.line_short"],
+        )
+        self.assertTrue(all(event["source"] == "simulator" for event in history))
+
     def test_duplicate_event_is_accepted_only_once(self):
         now = datetime.now(timezone.utc)
         event = {
