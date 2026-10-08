@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102a43">
+  <title>Warehouse Order Rescue</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand-mark" aria-hidden="true">WR</div>
+    <div><p class="eyebrow">WAREHOUSE OPERATIONS</p><h1>Order Rescue</h1></div>
+    <div class="live-state"><span class="live-dot"></span><span id="connection-state">Connecting…</span></div>
+  </header>
+  <main>
+    <section class="intro">
+      <div>
+        <p class="eyebrow">SUPERVISOR VIEW · SIMULATED DATA</p>
+        <h2>Catch shipping exceptions before cutoff.</h2>
+        <p class="intro-copy">Review live order risks, the evidence behind each alert, and a suggested next step.</p>
+      </div>
+      <button id="run-demo" class="primary-button" type="button">Run demo scenario <span aria-hidden="true">→</span></button>
+    </section>
+    <section class="toolbar" aria-label="Case overview">
+      <div><span class="metric-label">ACTIVE CASES</span><strong id="active-count">0</strong></div>
+      <div class="toolbar-note"><span class="live-dot"></span>Updates arrive as events are received</div>
+    </section>
+    <section id="cases" class="case-list" aria-live="polite">
+      <div class="empty-state"><div class="empty-icon" aria-hidden="true">↗</div><h3>No exception cases yet</h3><p>Run the demo to send a synthetic order through the event pipeline.</p></div>
+    </section>
+    <footer><span>Warehouse Order Rescue · Prototype</span><span>Suggestions require supervisor review. No WMS actions are executed.</span></footer>
+  </main>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="/app.js" defer></script>
+</body>
+</html>

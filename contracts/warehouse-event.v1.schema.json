@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:warehouse-order-rescue:event:v1",
+  "title": "WarehouseEvent v1",
+  "description": "Normalized warehouse event exchanged by the simulator, service, and future WMS adapters.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["event_id", "schema_version", "event_type", "occurred_at", "warehouse_id", "order_id", "source", "payload"],
+  "properties": {
+    "event_id": { "type": "string", "format": "uuid" },
+    "schema_version": { "const": "1.0" },
+    "event_type": {
+      "type": "string",
+      "enum": ["order.released", "order.line_picked", "order.line_short", "replenishment.started", "order.packed", "order.dispatched"]
+    },
+    "occurred_at": { "type": "string", "format": "date-time" },
+    "warehouse_id": { "type": "string", "minLength": 1 },
+    "order_id": { "type": "string", "minLength": 1 },
+    "source": { "type": "string", "minLength": 1, "description": "For example simulator or a named partner adapter." },
+    "payload": { "type": "object" }
+  },
+  "examples": [
+    {
+      "event_id": "c6ea75c4-8af8-4ca0-a720-0f9115c219ba",
+      "schema_version": "1.0",
+      "event_type": "order.line_short",
+      "occurred_at": "2026-10-08T10:30:00Z",
+      "warehouse_id": "WH-DEMO",
+      "order_id": "ORD-DEMO-1001",
+      "source": "simulator",
+      "payload": { "sku": "SKU-005", "requested_qty": 1, "picked_qty": 0, "reserve_qty": 12, "reserve_location": "RESERVE-A" }
+    }
+  ]
+}
