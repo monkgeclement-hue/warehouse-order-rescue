@@ -44,11 +44,10 @@ The SQLite database is created at `backend/warehouse_rescue.db`. Remove that fil
 Keep one shared repository and agree on the event contract before parallel work. The initial branch layout is:
 
 - `main` — stable, integrated version; merge reviewed pull requests here.
-- `team/integration` — your coordinator branch for the contract, simulator, and ingestion boundary.
-- `team/risk-engine` — the first collaborator's branch for risk and case lifecycle.
-- `team/dashboard` — the second collaborator's branch for the supervisor UI and live updates.
+- `team/lephallo1` — your branch for the event contract, simulator, and ingestion/store integration.
+- `team/rexlesenyeho` — the collaborator's branch for risk/case lifecycle and the supervisor dashboard.
 
-Invite both collaborators to the GitHub repository with write access. Each person should push only to their own branch and open pull requests to `main`; avoid direct pushes to `main`. Keep the API and event contract changes explicit so work done on separate machines can be integrated cleanly. Once names are known, the branch names can be renamed to match the team if you prefer.
+Invite `Rexlesenyeho` to the GitHub repository with write access. Each person should push only to their own branch and open pull requests to `main`; avoid direct pushes to `main`. Keep API and event contract changes explicit so work done on separate machines can be integrated cleanly. Coordinate contract changes together before either branch depends on them.
 
 ## Next steps
 

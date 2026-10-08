@@ -1,4 +1,4 @@
-# Three-person integration guide
+# Two-person integration guide
 
 ## Shared agreement
 
@@ -10,20 +10,19 @@ The first payload shapes are: `order.released` has `carrier_cutoff_at` (timezone
 
 ## Parallel ownership
 
-- **Person 1 — coordinator and integration:** contract, simulator, ingestion boundary, local run instructions, integration review.
-- **Person 2 — investigation engine:** event-to-order state, risk rules, evidence, case status, tests.
-- **Person 3 — supervisor experience:** dashboard, accessibility, case evidence display, SSE connection and connection state.
+- **Lephallo1 — event pipeline:** contract, simulator, ingestion, event store, and integration coordination.
+- **Rexlesenyeho — investigation experience:** risk rules, case lifecycle/evidence, dashboard, and focused tests.
 
-This is an initial split, not a reason to work in isolation. Agree on a small interface before each person starts; integrate through pull requests into the same repository.
+Agree on API and contract changes together before either person starts dependent work. Each person owns a separate branch and integrates through pull requests into `main`.
 
 ## Branches and collaboration
 
-The local starter branches are `main`, `team/integration`, `team/risk-engine`, and `team/dashboard`. `main` is the shared integration branch; each teammate pushes to their own role branch and opens pull requests into `main`.
+The local starter branches are `main`, `team/lephallo1`, and `team/rexlesenyeho`. `main` is the shared integration branch; each teammate pushes to their own branch and opens pull requests into `main`.
 
 After the GitHub repository is created and the branches are pushed:
 
 1. Each teammate clones the same repository and uses a local Python virtual environment.
-2. Check out the assigned remote branch, for example `git switch --track origin/team/risk-engine`.
+2. Check out the assigned remote branch, for example `git switch --track origin/team/rexlesenyeho`.
 3. Keep pull requests focused and avoid editing another owner's module unless coordinating first.
 4. Run `python -m unittest discover -s tests -v` and manually run the demo before merging.
 5. Resolve schema changes with all three modules in mind; never rely on a private payload shape that is absent from the contract.
