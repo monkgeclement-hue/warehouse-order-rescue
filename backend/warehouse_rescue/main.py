@@ -82,6 +82,11 @@ def cases() -> dict:
     return {"cases": store.list_cases()}
 
 
+@app.get("/api/v1/orders/{order_id}/events")
+def order_events(order_id: str) -> dict:
+    return {"order_id": order_id, "events": store.list_order_events(order_id)}
+
+
 @app.post("/api/v1/events", status_code=202)
 async def create_event(event: WarehouseEvent) -> dict:
     inserted, case = store.ingest(event.model_dump())
